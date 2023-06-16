@@ -1,4 +1,5 @@
 import './App.css';
+import LocationSearchBar from './components/locationSearchBar';
 
 function App() {
   return (
@@ -8,6 +9,9 @@ function App() {
         <h2>Quickly Check your Local Weather</h2>
         <p><sub><i>Powered by OpenWeather APIs</i></sub></p>
       </header>
+      <div className="page-content">
+        <LocationSearchBar />
+      </div>
     </div>
   );
 }
