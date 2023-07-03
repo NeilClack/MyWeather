@@ -21,9 +21,9 @@ function App() {
           </sub>
         </p>
       </header>
-      <div className="page-content">
+      {/* <div className="page-content">
         <LocationSearchBar onFormSubmit={formSubmitHandler} />
-      </div>
+      </div> */}
     </div>
   );
 }
