@@ -1,46 +1,29 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-// import LocationSearchBar from "./components/locationSearchBar";
+import { useState } from "react";
 
 function App() {
   const [enteredLocation, setEnteredLocation] = useState("");
-  const [locationList, setLocationList] = useState([]);
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
+  const [locationList, setLocationList] = useState(null);
 
-  async function queryLocationsHandler(enteredLocation) {
-    const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${enteredLocation}&limit=5&appid=${process.env.REACT_APP_OW_API_KEY}`;
-
+  async function geoQuery() {
     try {
-      const response = await fetch(geoUrl);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error. status: ${response.status}`);
-      }
-
-      const locationList = await response.json();
-      setLat(locationList[0]["lat"]);
-      setLon(locationList[0]["lon"]);
-      return locationList;
-    } catch (error) {
-      console.error(error);
+      const res = await fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${enteredLocation}&limit=5&appid=${process.env.REACT_APP_OW_API_KEY}`
+      );
+      const data = await res.json();
+      return data;
+    }
+    catch (err) {
+      console.error(err);
     }
   }
 
   const updateLocation = (event) => {
     setEnteredLocation(event.target.value);
-    console.log(enteredLocation);
   };
 
-  const handleSubmit = async (event) => {
-    let tempLocationList = [];
-    event.preventDefault();
-    console.log(enteredLocation);
-    const data = await queryLocationsHandler(enteredLocation);
-    data.map((i) => {
-      tempLocationList.push(`${i["name"]}, ${i["state"]}`);
-    });
-    setLocationList(tempLocationList);
+  const handleSubmit = async () => {
+    const list = await geoQuery();
+    setLocationList(list);
   };
 
   return (
@@ -59,9 +42,10 @@ function App() {
       <button type="submit" onClick={handleSubmit}>
         Submit
       </button>
-      {locationList.map((location) => {
-        return <li key={location}>{location}</li>;
+      {locationList && locationList.map(location => {
+        <li key={`${location.lat}${location.lon}`}>{location.name}, {location.state}</li>
       })}
+
     </div>
   );
 }
