@@ -43,7 +43,7 @@ function App() {
         Submit
       </button>
       {locationList && locationList.map(location => {
-        <li key={`${location.lat}${location.lon}`}>{location.name}, {location.state}</li>
+        return <li key={`${location.lat}${location.lon}`}>{location.name}, {location.state}</li>
       })}
 
     </div>
