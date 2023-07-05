@@ -1,46 +1,37 @@
 import { useState } from "react";
+import { geoQuery } from "../utils/queries";
 
 const LocationSearchBar = (props) => {
   const [enteredLocation, setEnteredLocation] = useState("");
+  const [locationList, setLocationList] = useState(null);
 
-  // In some cases, updating like this could fail due to React state update scheduling.
-  // If several state updates are scheduled, you may end up updating a previous version of the state, rather than the "current".
-  // In this case, I am not depending on the previous state, so I will leave this as is.
-  // Here's how to do it if you depend on the previous state,
-  // and I'll use an object as the previous state to make it more obvious what is happening.
-  //
-  // setEnteredLocation((prevState) => {
-  //   return {..prevState, updatedKey: event.target.value};
-  // })
-  const locationChangeHandler = (event) => {
+  const updateLocation = (event) => {
     setEnteredLocation(event.target.value);
   };
 
-  const submitHandler = (event) => {
-    // Prevents the form from pushing data to the server.
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const submittedLocation = enteredLocation;
-    props.onFormSubmit(submittedLocation);
-    // Reset the location field after submitting.
-    setEnteredLocation("");
+    const list = await geoQuery(enteredLocation);
+    setLocationList(list);
   };
 
   return (
     <div>
       <form>
-        <fieldset>
-          <label>Location</label>
-          <input
-            type="text"
-            value={enteredLocation}
-            placeholder="Enter your city name or zipcode"
-            onChange={locationChangeHandler}
-          ></input>
-          <button type="submit" onClick={submitHandler}>
-            Submit
-          </button>
-        </fieldset>
+        <label>Location</label>
+        <input
+          type="text"
+          value={enteredLocation}
+          placeholder="City name or zipcode"
+          onChange={updateLocation}
+        ></input>
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
+      {locationList && locationList.map((location) => {
+        return <li key={`${location.lat}${location.lon}`}>{location.name}, {location.state}</li>
+      })}
     </div>
   );
 };
