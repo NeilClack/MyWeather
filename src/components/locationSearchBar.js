@@ -7,7 +7,7 @@ const LocationSearchBar = (props) => {
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
 
-  const updateLocation = (event) => {
+  const updateEnteredLocation = (event) => {
     setEnteredLocation(event.target.value);
   };
 
@@ -22,7 +22,7 @@ const LocationSearchBar = (props) => {
   };
 
   useEffect(() => {
-    props.updateLocation([lat, lon]);
+    props.updateLocation([lat, lon, enteredLocation]);
   }, [lat, lon]);
 
   return (
@@ -33,7 +33,7 @@ const LocationSearchBar = (props) => {
           type="text"
           value={enteredLocation}
           placeholder="Enter City Name"
-          onChange={updateLocation}
+          onChange={updateEnteredLocation}
         ></input>
         <button type="submit" onClick={handleSubmit}>
           Submit
