@@ -6,7 +6,8 @@ import WeatherDisplay from "./components/weatherDisplay";
 function App() {
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState({});
+  const [weatherIsLoading, setWeatherIsLoading] = useState(true);
   const [locationName, setLocationName] = useState("");
 
   const handleUpdateLocation = ([lat, lon, enteredLocation]) => {
@@ -18,7 +19,11 @@ function App() {
   useEffect(() => {
     const fetchWeather = async () => {
       const data = await weatherQuery(lat, lon);
+      console.log(`Weather data in useEffect function: ${data}`);
       setWeather(data);
+      if (data) {
+        setWeatherIsLoading(false);
+      }
     };
     fetchWeather();
   }, [lat, lon]);
@@ -35,7 +40,9 @@ function App() {
         </p>
       </header>
       <LocationSearchBar updateLocation={handleUpdateLocation} />
-      {weather && <WeatherDisplay location={locationName} />}
+      {!weatherIsLoading && (
+        <WeatherDisplay location={locationName} weatherData={weather} />
+      )}
     </div>
   );
 }
