@@ -42,7 +42,13 @@ const LocationSearchBar = (props) => {
       {locationList &&
         locationList.map((location) => {
           return (
-            <li key={`${location.lat}${location.lon}`}>
+            <li
+              key={`${location.lat}${location.lon}`}
+              onClick={() => {
+                setLat(location.lat);
+                setLon(location.lon);
+              }}
+            >
               {location.name}, {location.state}
             </li>
           );
