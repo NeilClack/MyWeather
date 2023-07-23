@@ -23,6 +23,6 @@ export const weatherQuery = async (lat, lon) => {
     console.log(data);
     return data;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
