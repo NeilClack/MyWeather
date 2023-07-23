@@ -47,6 +47,8 @@ const LocationSearchBar = (props) => {
               onClick={() => {
                 setLat(location.lat);
                 setLon(location.lon);
+                setLocationList([]);
+                setEnteredLocation(`${location.name}, ${location.state}`);
               }}
             >
               {location.name}, {location.state}
