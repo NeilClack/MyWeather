@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { geoQuery } from "../utils/queries";
 
-const Content = styled.div``;
-
 const Form = styled.form`
   padding: 1rem;
 `;
