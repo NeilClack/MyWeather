@@ -1,7 +1,30 @@
 import { useEffect, useState } from "react";
+import { styled } from "styled-components";
 import { weatherQuery } from "./utils/queries";
 import LocationSearchBar from "./components/locationSearchBar";
 import WeatherDisplay from "./components/weatherDisplay";
+
+const Main = styled.main`
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Header = styled.header`
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  margin: auto;
+  padding: 0;
+`;
+
+const SubHeading = styled.h2`
+  margin: auto;
+  padding: 0;
+`;
 
 function App() {
   const [lat, setLat] = useState("");
@@ -31,21 +54,21 @@ function App() {
   }, [lat, lon]);
 
   return (
-    <div>
-      <header>
-        <h1>My Weather</h1>
-        <h2>Quickly Check your Local Weather</h2>
+    <Main>
+      <Header>
+        <Heading>My Weather</Heading>
+        <SubHeading>Quickly Check your Local Weather</SubHeading>
         <p>
           <sub>
             <i>Powered by OpenWeather</i>
           </sub>
         </p>
-      </header>
+      </Header>
       <LocationSearchBar updateLocation={handleUpdateLocation} />
       {!weatherIsLoading && (
         <WeatherDisplay location={locationName} weatherData={weather} />
       )}
-    </div>
+    </Main>
   );
 }
 
