@@ -4,11 +4,13 @@ Allow a user to enter a location, then pull today's current weather information 
 
 ## Tasks
 
-- [ ] Users need to be able to search the OpenWeather location database
-- [ ] Users need to be able to select a location
-- [ ] Upon selecting a location, the weather needs to be fetched from OpenWeather
-- [ ] Weather data needs to be filtered to information the user cares about
-- [ ] Remaining weather data needs to be displayed on the page
+- [x] Users need to be able to search the OpenWeather location database
+- [x] Users need to be able to select a location
+- [x] Upon selecting a location, the weather needs to be fetched from OpenWeather
+- [x] Weather data needs to be filtered to information the user cares about
+- [x] Remaining weather data needs to be displayed on the page
+- [x] Site needs to be styled for Mobile screens
+- [ ] Site needs to be styled for desktop screens
 
 ### Extra Features
 
@@ -20,6 +22,12 @@ Allow a user to enter a location, then pull today's current weather information 
   - Add a switch to switch times between 12 and 24 hour formats
 - [ ] Add dark theme
   - Add a switch to switch between dark and light themes
+- [ ] Add compass for visualizing wind direction
+  - Visual compass
+  - Dynamic wind direction arrow
+  - See [this example](http://snowfence.umn.edu/Components/winddirectionanddegrees.htm)
+- [ ] Add Radar map
+- [ ] Add National Weather alerts
 
 ## BUGS
 
