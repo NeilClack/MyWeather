@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { weatherQuery } from "./utils/queries";
 import LocationSearchBar from "./components/locationSearchBar";
 import WeatherDisplay from "./components/weatherDisplay";
-import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 
 function App() {
   const [lat, setLat] = useState("");
