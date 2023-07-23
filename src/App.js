@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { weatherQuery } from "./utils/queries";
 import LocationSearchBar from "./components/locationSearchBar";
 import WeatherDisplay from "./components/weatherDisplay";
+import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 
 function App() {
   const [lat, setLat] = useState("");
@@ -17,15 +18,17 @@ function App() {
   };
 
   useEffect(() => {
-    const fetchWeather = async () => {
-      const data = await weatherQuery(lat, lon);
-      console.log(`Weather data in useEffect function: ${data}`);
-      setWeather(data);
-      if (data) {
-        setWeatherIsLoading(false);
-      }
-    };
-    fetchWeather();
+    if (lat !== "" || lon !== "") {
+      const fetchWeather = async () => {
+        const data = await weatherQuery(lat, lon);
+        console.log(`Weather data in useEffect function: ${data}`);
+        setWeather(data);
+        if (data) {
+          setWeatherIsLoading(false);
+        }
+      };
+      fetchWeather();
+    }
   }, [lat, lon]);
 
   return (
