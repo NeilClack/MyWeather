@@ -37,7 +37,7 @@ Allow a user to enter a location, then pull today's current weather information 
   - **FIXED**: Implemented clickable LI elements, allowing the Lat and Lon to be set by selecting a location from the list.
 - [x] When no location is selected, the WeatherDisplay component is loading and causing an error due to having no weatherData
   - **FIXED**: Conditional return statement in WeatherDisplay returns new JSX if no weather data exists.
-- [ ] Remove search results list once weather data loads
+- [x] Remove search results list once weather data loads
   - When searching for a location which only a single result is returned, the list should not be displayed.
   - this could be resolved by applying one of the following:
     - Remove the list when weather data is loaded
