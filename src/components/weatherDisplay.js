@@ -26,6 +26,7 @@ const CurCondition = styled.p`
 
 const IconContainer = styled.div`
   text-align: center;
+  margin-bottom: 1rem;
 `;
 
 const WeatherIcon = styled.img`
