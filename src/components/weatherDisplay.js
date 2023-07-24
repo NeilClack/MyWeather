@@ -7,6 +7,9 @@ const WeatherCard = styled.div`
   border-radius: 2rem;
   box-shadow: 3px 3px 2px #adadad;
   margin-bottom: 1rem;
+  @media (min-width: 450px) {
+    width: 20rem;
+  }
 `;
 
 const LocationName = styled.p`
