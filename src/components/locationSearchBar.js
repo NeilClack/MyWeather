@@ -73,7 +73,7 @@ const LocationSearchBar = (props) => {
         </Button>
       </Form>
       <SearchList>
-        {locationList &&
+        {locationList.length > 1 &&
           locationList.map((location) => {
             return (
               <ListElement
