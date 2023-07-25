@@ -1,4 +1,6 @@
 import { styled } from "styled-components";
+import { convertTsToTime } from "../utils/datetime";
+import Alert from "./alert";
 
 const WeatherCard = styled.div`
   background-color: #adf0f7;
@@ -41,17 +43,6 @@ const TRow = styled.tr``;
 
 const TCol = styled.td``;
 
-const convertTsToTime = (timestamp) => {
-  let tempDate = new Date(timestamp * 1000);
-
-  let hours = tempDate.getHours();
-  let minutes = tempDate.getMinutes();
-
-  let convertedTime = `${hours}:${minutes}`;
-
-  return convertedTime;
-};
-
 const WeatherDisplay = (props) => {
   if (props.weatherData.current) {
     return (
@@ -60,6 +51,7 @@ const WeatherDisplay = (props) => {
         <CurCondition>
           {props.weatherData.current.weather[0].description}
         </CurCondition>
+        {props.weatherData.alerts && <Alert alert={props.weatherData.alerts} />}
         <IconContainer>
           <WeatherIcon
             src={`https://openweathermap.org/img/wn/${props.weatherData.current.weather[0].icon}@2x.png`}
