@@ -21,4 +21,9 @@ describe("datetime utility function", () => {
 
     expect(returnedMinute).toBe(currentMinute);
   });
+  test("returns the correct time format", () => {
+    const currentEpoch = Date.now();
+    const returnedTime = convertTsToTime(currentEpoch);
+    expect(returnedTime).toMatch(/^\d{1,2}:\d{2}$/);
+  });
 });
