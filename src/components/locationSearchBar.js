@@ -39,7 +39,7 @@ const LocationSearchBar = (props) => {
   const [locationList, setLocationList] = useState([]);
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
-  const updateLocation = props.updateLocation();
+  const updateLocation = props.updateLocation;
 
   const updateEnteredLocation = (event) => {
     setEnteredLocation(event.target.value);
