@@ -42,3 +42,5 @@ Allow a user to enter a location, then pull today's current weather information 
   - this could be resolved by applying one of the following:
     - Remove the list when weather data is loaded
     - Conditionally hide the list if the list is 1
+- [x] Entire application stopped rendering in Main or Develop branches.
+  - Props desctructuring in the locationSearchBar was calling the function in destructure, instead of pointing to the function.
