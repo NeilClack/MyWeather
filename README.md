@@ -30,6 +30,11 @@ Allow a user to enter a location, then pull today's current weather information 
 - [ ] Add National Weather alerts
 - [ ] Pull location from browser automatically
 
+## Other Notes
+
+userEvent.default.setup is not a function below userEvent v14  
+Update userEvent to latest with `npm install @testing-library/user-event@latest`
+
 ## BUGS
 
 - [x] Unable to select location with multiple results.
