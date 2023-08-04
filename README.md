@@ -11,6 +11,7 @@ Allow a user to enter a location, then pull today's current weather information 
 - [x] Remaining weather data needs to be displayed on the page
 - [x] Site needs to be styled for Mobile screens
 - [ ] Site needs to be styled for desktop screens
+- [ ] Move location results list to a separate component
 
 ### Extra Features
 
