@@ -53,6 +53,7 @@ const LocationSearchBar = (props) => {
       setLat(list[0]["lat"]);
       setLon(list[0]["lon"]);
     }
+    console.log(list);
   };
 
   useEffect(() => {
@@ -62,13 +63,16 @@ const LocationSearchBar = (props) => {
   return (
     <div>
       <Form>
-        <Label>Location </Label>
-        <Input
-          type="text"
-          value={enteredLocation}
-          placeholder="Enter City Name"
-          onChange={updateEnteredLocation}
-        ></Input>
+        <label>
+          Location{" "}
+          <Input
+            type="text"
+            id="locationInput"
+            value={enteredLocation}
+            placeholder="Enter City Name"
+            onChange={updateEnteredLocation}
+          ></Input>
+        </label>
         <Button type="submit" onClick={handleSubmit}>
           Submit
         </Button>
