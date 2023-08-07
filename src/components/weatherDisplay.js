@@ -44,7 +44,7 @@ const TRow = styled.tr``;
 const TCol = styled.td``;
 
 const WeatherDisplay = (props) => {
-  if (props.weatherData.current) {
+  if (props.weatherData !== null) {
     return (
       <WeatherCard>
         <LocationName>{props.location}</LocationName>
@@ -58,46 +58,48 @@ const WeatherDisplay = (props) => {
           />
         </IconContainer>
         <Table>
-          <TRow>
-            <TCol>Sunrise</TCol>
-            <TCol>{convertTsToTime(props.weatherData.current.sunrise)}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Sunset</TCol>
-            <TCol>{convertTsToTime(props.weatherData.current.sunset)}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Temp.</TCol>
-            <TCol>{props.weatherData.current.temp}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Feels Like</TCol>
-            <TCol>{props.weatherData.current.feels_like}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Pressure</TCol>
-            <TCol>{props.weatherData.current.pressure}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Humidity</TCol>
-            <TCol>{props.weatherData.current.humidity}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Dew Point</TCol>
-            <TCol>{props.weatherData.current.dew_point}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>UVI</TCol>
-            <TCol>{props.weatherData.current.uvi}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Clouds</TCol>
-            <TCol>{props.weatherData.current.clouds}</TCol>
-          </TRow>
-          <TRow>
-            <TCol>Wind Speed</TCol>
-            <TCol>{props.weatherData.current.wind_speed}</TCol>
-          </TRow>
+          <tbody>
+            <TRow>
+              <TCol>Sunrise</TCol>
+              <TCol>{convertTsToTime(props.weatherData.current.sunrise)}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Sunset</TCol>
+              <TCol>{convertTsToTime(props.weatherData.current.sunset)}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Temp.</TCol>
+              <TCol>{props.weatherData.current.temp}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Feels Like</TCol>
+              <TCol>{props.weatherData.current.feels_like}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Pressure</TCol>
+              <TCol>{props.weatherData.current.pressure}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Humidity</TCol>
+              <TCol>{props.weatherData.current.humidity}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Dew Point</TCol>
+              <TCol>{props.weatherData.current.dew_point}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>UVI</TCol>
+              <TCol>{props.weatherData.current.uvi}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Clouds</TCol>
+              <TCol>{props.weatherData.current.clouds}</TCol>
+            </TRow>
+            <TRow>
+              <TCol>Wind Speed</TCol>
+              <TCol>{props.weatherData.current.wind_speed}</TCol>
+            </TRow>
+          </tbody>
         </Table>
       </WeatherCard>
     );
