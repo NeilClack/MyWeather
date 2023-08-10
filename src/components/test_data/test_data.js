@@ -1785,7 +1785,7 @@ const weatherDataMock = {
         {
             "sender_name": "NWS Dallas-Fort Worth (Dallas - Forth Worth)",
             "event": "Excessive Heat Warning",
-            "start": 1691172360,
+            "start": 1691123400,
             "end": 1691283600,
             "description": "...EXCESSIVE HEAT WARNING NOW IN EFFECT UNTIL 8 PM CDT SATURDAY...\n* WHAT...Dangerously hot conditions with heat index values up to\n112 and temperatures over 105.\n* WHERE...Most of North and Central Texas.\n* WHEN...Until 8 PM CDT Saturday.\n* IMPACTS...Extreme heat and humidity will significantly\nincrease the potential for heat related illnesses,\nparticularly for those working or participating in outdoor\nactivities.",
             "tags": [
