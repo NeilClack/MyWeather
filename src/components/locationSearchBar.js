@@ -56,6 +56,17 @@ const LocationSearchBar = (props) => {
     console.log(list);
   };
 
+  const geoLocate = () => {
+    navigator.geolocation.getCurrentPosition(location => {
+      setLat(location.coords.latitude);
+      setLon(location.coords.longitude);
+    }, err => {
+      console.log(err)
+    })
+  }
+
+  geoLocate();
+
   useEffect(() => {
     updateLocation([lat, lon, enteredLocation]);
   }, [lat, lon, enteredLocation, updateLocation]);
