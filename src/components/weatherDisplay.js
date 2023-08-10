@@ -48,10 +48,12 @@ const WeatherDisplay = (props) => {
     return (
       <WeatherCard>
         <LocationName>{props.location}</LocationName>
+        {props.weatherData.alerts.map((a) => {
+          return <Alert key={a.event} alert={a} />
+        })}
         <CurCondition>
           {props.weatherData.current.weather[0].description}
         </CurCondition>
-        {props.weatherData.alerts && <Alert alert={props.weatherData.alerts} />}
         <IconContainer>
           <WeatherIcon
             src={`https://openweathermap.org/img/wn/${props.weatherData.current.weather[0].icon}@2x.png`}
