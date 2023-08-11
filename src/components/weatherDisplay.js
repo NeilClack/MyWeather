@@ -48,7 +48,7 @@ const WeatherDisplay = (props) => {
     return (
       <WeatherCard>
         <LocationName>{props.location}</LocationName>
-        {props.weatherData.alerts.map((a) => {
+        {props.weatherData.alerts && props.weatherData.alerts.map((a) => {
           return <Alert key={a.event} alert={a} />
         })}
         <CurCondition>
