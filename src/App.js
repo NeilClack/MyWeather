@@ -33,10 +33,10 @@ function App() {
   const [weatherIsLoading, setWeatherIsLoading] = useState(true);
   const [locationName, setLocationName] = useState("");
 
-  const handleUpdateLocation = ([lat, lon, enteredLocation]) => {
+  const handleUpdateLocation = ([lat, lon, queriedLocatioName]) => {
     setLat(lat);
     setLon(lon);
-    setLocationName(enteredLocation);
+    setLocationName(queriedLocatioName);
   };
 
   useEffect(() => {
