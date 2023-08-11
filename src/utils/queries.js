@@ -13,7 +13,7 @@ const geoQuery = async enteredLocation => {
 const reverseGeoQuery = async (lat, lon) => {
   try {
     const res = await fetch(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OW_API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OW_API_KEY}`
     );
     const data = await res.json();
     return data;
