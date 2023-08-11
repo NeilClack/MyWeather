@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { geoQuery } from "../utils/queries";
+import { geoQuery, reverseGeoQuery } from "../utils/queries";
 
 const Form = styled.form`
   padding: 1rem;
@@ -35,56 +35,62 @@ const ListElement = styled.li`
 `;
 
 const LocationSearchBar = (props) => {
-  const [enteredLocation, setEnteredLocation] = useState("");
-  const [locationList, setLocationList] = useState([]);
+  const [userInput, setUserInput] = useState("");
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
+  const [locationList, setLocationList] = useState([]);
+  const [locationName, setLocationName] = useState("");
   const updateLocation = props.updateLocation;
 
-  const updateEnteredLocation = (event) => {
-    setEnteredLocation(event.target.value);
+  const updateUserInput = (event) => {
+    setUserInput(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const list = await geoQuery(enteredLocation);
+    const list = await geoQuery(userInput);
     setLocationList(list);
     if (Object.keys(list).length === 1) {
       setLat(list[0]["lat"]);
       setLon(list[0]["lon"]);
+      setLocationName(list[0]["name"]);
     }
     console.log(list);
   };
 
   const geoLocate = () => {
-    navigator.geolocation.getCurrentPosition(location => {
-      setLat(location.coords.latitude);
-      setLon(location.coords.longitude);
+    // Get current location
+    navigator.geolocation.getCurrentPosition( async (position) => {
+      const queriedLocation = await reverseGeoQuery(position.coords.latitude, position.coords.longitude);
+      console.log(queriedLocation)
+      setLocationName(`${queriedLocation[0].name}, ${queriedLocation[0].state}`);
+      setLat(position.coords.latitude);
+      setLon(position.coords.longitude);
     }, err => {
-      console.log(err)
+      console.log(err);
     })
-  }
-
-  geoLocate();
+  };
 
   useEffect(() => {
-    updateLocation([lat, lon, enteredLocation]);
-  }, [lat, lon, enteredLocation, updateLocation]);
+    updateLocation([lat, lon, locationName])  
+  }, [lat, lon, locationName, updateLocation])
+
+  geoLocate();
 
   return (
     <div>
       <Form>
-        <label>
+        <Label>
           Location{" "}
           <Input
             type="text"
             id="locationInput"
-            value={enteredLocation}
+            value={userInput}
             placeholder="Enter City Name"
-            onChange={updateEnteredLocation}
+            onChange={updateUserInput}
           ></Input>
-        </label>
-        <Button type="submit" onClick={handleSubmit}>
+        </Label>
+        <Button type="submit" onClick={handleFormSubmit}>
           Submit
         </Button>
       </Form>
@@ -98,7 +104,7 @@ const LocationSearchBar = (props) => {
                   setLat(location.lat);
                   setLon(location.lon);
                   setLocationList([]);
-                  setEnteredLocation(`${location.name}, ${location.state}`);
+                  setLocationName(`${location.name}, ${location.state}`);
                 }}
               >
                 {location.name}, {location.state}
