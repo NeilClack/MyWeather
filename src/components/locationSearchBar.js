@@ -59,23 +59,35 @@ const LocationSearchBar = (props) => {
   };
 
   const geoLocate = () => {
-    // Get current location
-    navigator.geolocation.getCurrentPosition( async (position) => {
-      const queriedLocation = await reverseGeoQuery(position.coords.latitude, position.coords.longitude);
-      console.log(queriedLocation)
-      setLocationName(`${queriedLocation[0].name}, ${queriedLocation[0].state}`);
-      setLat(position.coords.latitude);
-      setLon(position.coords.longitude);
-    }, err => {
-      console.log(err);
-    })
+    if (lat === "" && lon === "") {
+      // Get current location
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const queriedLocation = await reverseGeoQuery(
+            position.coords.latitude,
+            position.coords.longitude
+          );
+          console.log(queriedLocation);
+          setLocationName(
+            `${queriedLocation[0].name}, ${queriedLocation[0].state}`
+          );
+          setLat(position.coords.latitude);
+          setLon(position.coords.longitude);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   };
 
-  useEffect(() => {
-    updateLocation([lat, lon, locationName])  
-  }, [lat, lon, locationName, updateLocation])
+  if (lat !== "" && lon !== "" && locationName !== "") {
+    updateLocation([lat, lon, locationName]);
+  }
 
-  geoLocate();
+  useEffect(() => {
+    geoLocate();
+  }, []);
 
   return (
     <div>
