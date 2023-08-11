@@ -1,4 +1,4 @@
-const geoQuery = async enteredLocation => {
+const geoQuery = async (enteredLocation) => {
   try {
     const res = await fetch(
       `https://api.openweathermap.org/geo/1.0/direct?q=${enteredLocation}&limit=5&appid=${process.env.REACT_APP_OW_API_KEY}`
@@ -8,7 +8,7 @@ const geoQuery = async enteredLocation => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 const reverseGeoQuery = async (lat, lon) => {
   try {
@@ -20,7 +20,7 @@ const reverseGeoQuery = async (lat, lon) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const weatherQuery = async (lat, lon) => {
   try {
@@ -31,8 +31,6 @@ const weatherQuery = async (lat, lon) => {
       return null;
     }
     const data = await res.json();
-    console.log("from query");
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
