@@ -21,9 +21,14 @@ describe("datetime utility function", () => {
 
     expect(returnedMinute).toBe(currentMinute);
   });
-  test("returns the correct time format", () => {
+  test("returns the correct time string", () => {
     const currentEpoch = Date.now();
     const returnedTime = convertTsToTime(currentEpoch);
-    expect(returnedTime).toMatch(/^\d{1,2}:\d{2}$/);
+    expect(returnedTime).toMatch(/^(?:[01]?\d|2[0-3])(?::[0-5]\d){1,2}$/);
+  });
+  test("time string accounts for single digits", () => {
+    const returnedTime = convertTsToTime(1692086515000);
+
+    expect(returnedTime).toMatch(/^(?:[01]?\d|2[0-3])(?::[0-5]\d){1,2}$/);
   });
 });
