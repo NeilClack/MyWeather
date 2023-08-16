@@ -1,10 +1,12 @@
-const convertTsToTime = (timestamp) => {
+const convertTsToTime = (timestamp, timezone) => {
+  timestamp = timestamp * 1000;
   let tempDate = new Date(timestamp);
-  let hours = tempDate.getHours();
-  let minutes = tempDate.getMinutes();
-  let convertedTime = `${hours}:${minutes}`;
-
-  return convertedTime;
+  let time = tempDate.toLocaleTimeString({
+    locale: timezone,
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return time;
 };
 
 export { convertTsToTime };
