@@ -48,9 +48,10 @@ const WeatherDisplay = (props) => {
     return (
       <WeatherCard>
         <LocationName>{props.location}</LocationName>
-        {props.weatherData.alerts && props.weatherData.alerts.map((a) => {
-          return <Alert key={a.event} alert={a} />
-        })}
+        {props.weatherData.alerts &&
+          props.weatherData.alerts.map((a) => {
+            return <Alert key={a.event} alert={a} />;
+          })}
         <CurCondition>
           {props.weatherData.current.weather[0].description}
         </CurCondition>
@@ -63,11 +64,21 @@ const WeatherDisplay = (props) => {
           <tbody>
             <TRow>
               <TCol>Sunrise</TCol>
-              <TCol>{convertTsToTime(props.weatherData.current.sunrise)}</TCol>
+              <TCol>
+                {convertTsToTime(
+                  props.weatherData.current.sunrise,
+                  props.weatherData.timezone
+                )}
+              </TCol>
             </TRow>
             <TRow>
               <TCol>Sunset</TCol>
-              <TCol>{convertTsToTime(props.weatherData.current.sunset)}</TCol>
+              <TCol>
+                {convertTsToTime(
+                  props.weatherData.current.sunset,
+                  props.weatherData.timezone
+                )}
+              </TCol>
             </TRow>
             <TRow>
               <TCol>Temp.</TCol>
