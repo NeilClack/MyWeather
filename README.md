@@ -1,5 +1,4 @@
 # Application Description
--an update to test vm ssh key
 
 Allow a user to enter a location, then pull today's current weather information and display it in a user friendly way.
 
